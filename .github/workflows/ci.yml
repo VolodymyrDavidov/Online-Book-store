@@ -1,6 +1,6 @@
 name: Java CI
 
-on: [pull_request_target]
+on: [push, pull_request_target]
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
       - uses: mate-academy/auto-reject-action@v2
-        if: ${{ github.event.pull_request_target && failure() }}
+        if: ${{ github.event.pull_request && failure() }}
         with:
           github-token: ${{ github.token }}
 
