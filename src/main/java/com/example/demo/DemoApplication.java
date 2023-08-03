@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
 import com.example.demo.model.Book;
 import com.example.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.math.BigDecimal;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -40,11 +39,8 @@ public class DemoApplication {
                 book.setCoverlmage("Hardcover");
 
                 bookService.save(book);
-
                 System.out.println(bookService.findAll());
-
             }
         };
     }
-
 }
