@@ -1,17 +1,18 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.BookDto;
-import com.example.demo.dto.BookSearchParametersDto;
-import com.example.demo.dto.CreateBookRequestDto;
+import com.example.demo.dto.book.BookDto;
+import com.example.demo.dto.book.BookSearchParametersDto;
+import com.example.demo.dto.book.CreateBookRequestDto;
 import com.example.demo.mapper.BookMapper;
 import com.example.demo.model.Book;
-import com.example.demo.service.BookService;
+import com.example.demo.service.book.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,8 @@ public class BookController {
         return bookService.findAll(pageable);
     }
 
-    @Operation(summary = "Create a new book")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Operation(summary = "Create a new book (Admin)")
     @PostMapping
     public BookDto save(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.save(requestDto);
@@ -47,13 +49,15 @@ public class BookController {
         return bookService.findById(id);
     }
 
-    @Operation(summary = "Delete a book by ID")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Operation(summary = "Delete a book by ID (Admin)")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         bookService.deleteById(id);
     }
 
-    @Operation(summary = "Update a book by ID")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Operation(summary = "Update a book by ID (Admin)")
     @PutMapping("/{id}")
     public BookDto update(@PathVariable Long id,
                           @RequestBody @Valid CreateBookRequestDto requestDto) {
