@@ -9,5 +9,4 @@ public class CartItemDto {
     private Long bookId;
     private String bookTitle;
     private int quantity;
-
 }
