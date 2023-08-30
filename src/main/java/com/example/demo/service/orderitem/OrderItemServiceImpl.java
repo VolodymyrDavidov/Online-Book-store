@@ -17,7 +17,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public OrderItemDto findOrderItemByOrderIdAndItemId(Long orderId, Long itemId) {
         return orderItemMapper.toDto(orderItemsRepository
-                .findOrderItem(orderId, itemId).orElseThrow(() ->
+                .findOrderItemByOrderIdAndId(orderId, itemId).orElseThrow(() ->
                         new EntityNotFoundException("Can't find orderItem with order id: "
                                 + orderId + " and item id: " + itemId)));
     }

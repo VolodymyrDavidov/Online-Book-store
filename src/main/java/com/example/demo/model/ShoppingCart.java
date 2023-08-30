@@ -28,14 +28,13 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "user_id")
-    @Column(nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @OneToMany(mappedBy = "shoppingCart",
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @Column(nullable = false)
     private Set<CartItem> cartItems = new HashSet<>();
     @Column(nullable = false)
     private boolean isDeleted = false;
