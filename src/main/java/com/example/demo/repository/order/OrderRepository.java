@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    List<Order> getAll(Pageable pageable, User user);
+    List<Order> getAllByUser(Pageable pageable, User user);
 }

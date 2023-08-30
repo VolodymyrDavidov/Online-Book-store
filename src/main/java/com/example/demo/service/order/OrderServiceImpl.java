@@ -66,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getOrderHistory(Pageable pageable) {
-        return orderRepository.getAll(pageable, userService.getUser())
+        return orderRepository.getAllByUser(pageable, userService.getUser())
                 .stream()
                 .map(orderMapper::toDto)
                 .toList();

@@ -29,7 +29,7 @@ public class Category {
     private String description;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "category")
+    @ManyToMany(mappedBy = "categories")
     private Set<Book> booksSet = new HashSet<>();
     @Column(nullable = false)
     private boolean isDeleted = false;
